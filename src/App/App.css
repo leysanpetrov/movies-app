@@ -1,0 +1,13 @@
+
+
+
+.container-box {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: white;
+    padding:0 14px;
+    height: 100%;
+    width: 100%;
+}
+
+
