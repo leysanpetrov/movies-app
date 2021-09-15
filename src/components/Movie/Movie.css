@@ -1,23 +1,21 @@
-.container-movie {
+.container-aboutMovie {
     background-color: #ffffff;
     padding:12px 20px;
     width: 270px;
+    height: 281px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.container {
+.container-movie {
     display: flex;
     background-color: white;
     padding: 19px 18px;
     width: 454px;
-    max-height: 281px;
     margin: 0;
 }
 
-.container .movie-image {
+.container-movie .movie-image {
     width: 183px;
-    /*width: 150px;*/
-    /*height: 150px;*/
 }
 
 h1 {
@@ -50,7 +48,7 @@ h1 {
 
 .overview {
     margin: 0;
-    font-weight: normal;
+    font-weight: 400;
     font-size: 12px;
     line-height: 22px;
     color: #000000;

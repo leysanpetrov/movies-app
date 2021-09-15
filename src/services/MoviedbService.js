@@ -14,8 +14,8 @@ export default class MoviedbService {
       throw new Error(`Could not fetch ${url}` +
         `, received ${res.status}`)
     }
-    const result = await res.json()
-    return result
+
+    return res.json()
   }
 
   getAllMovies = async () => {

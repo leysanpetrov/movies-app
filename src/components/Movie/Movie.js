@@ -2,10 +2,10 @@ import React from 'react';
 import './Movie.css';
 
 const Movie = ({image,title, date, action, drama, overview}) => (
-      <div className="container">
+      <div className="container-movie">
         <img alt="Poster" className="movie-image"
              src={image}/>
-        <div className="container-movie">
+        <div className="container-aboutMovie">
           <h1>{title}</h1>
           <div className="date">{date}</div>
           <div>

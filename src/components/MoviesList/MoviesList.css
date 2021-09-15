@@ -1,9 +1,49 @@
-li {
+.movie {
     list-style-type: none;
+
 }
 
-ul {
+.movies-list {
     padding: 0;
-    columns: 2;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     margin: 0;
 }
+
+.alert {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+}
+
+.spinner {
+    position: fixed;
+    z-index: 1;
+    top: 50%;
+    right: 50%;
+}
+
+/*.ant-spin {*/
+/*    box-sizing: border-box;*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    color: rgba(0, 0, 0, 0.85);*/
+/*    font-size: 14px;*/
+/*    font-variant: tabular-nums;*/
+/*    line-height: 1.5715;*/
+/*    list-style: none;*/
+/*    font-feature-settings: 'tnum';*/
+/*    position: absolute;*/
+/*    display: none;*/
+/*    color: #1890ff;*/
+/*    text-align: center;*/
+/*    vertical-align: middle;*/
+/*    opacity: 0;*/
+/*    transition: transform 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);*/
+/*}*/
+/*.ant-spin-spinning {*/
+/*    position: static;*/
+/*    display: inline-block;*/
+/*    opacity: 1;*/
+/*}*/
