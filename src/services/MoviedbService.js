@@ -1,8 +1,16 @@
+
+// import Search from "../components/Search/Search"
+
 export default class MoviedbService {
 
   _apiBase = 'https://api.themoviedb.org/3'
 
   _query = 'query=return'
+  // _query = `query=${value}`
+
+  // getQuery = () => {
+  //
+  // }
 
   _apiKey = 'api_key=4ef841d6cda764295c576698e2b27bcc'
 
@@ -24,7 +32,7 @@ export default class MoviedbService {
       .map(this._constructorMovie)
   }
 
-  _constructorMovie(movie) {
+  _constructorMovie = (movie) => {
     const imageBase = "https://www.themoviedb.org/t/p/w440_and_h660_face"
     return {
       id: movie.id,

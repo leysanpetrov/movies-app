@@ -5,6 +5,7 @@ import './MoviesList.css';
 import { format } from 'date-fns'
 import Movie from '../Movie/Movie'
 
+
 import MoviedbService from '../../services/MoviedbService'
 
 export default class MoviesList extends Component {
@@ -16,8 +17,7 @@ export default class MoviesList extends Component {
     loading: true
   }
 
-  constructor () {
-    super();
+  componentDidMount() {
     this.getMovies()
   }
 
