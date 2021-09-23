@@ -12,7 +12,6 @@
     "jest": true
   },
   "rules": {
-
     "curly": ["error"],
     "max-depth": ["warn", 4],
     "id-length": ["warn", { "exceptions": ["i", "j"], "min": 2 }],

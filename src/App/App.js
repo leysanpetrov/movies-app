@@ -1,35 +1,84 @@
-import React, {Component} from 'react';
-import './App.css';
-import 'antd/dist/antd.css';
-import { Pagination } from 'antd';
+import React, { Component } from 'react'
+import { debounce } from 'lodash'
+import './App.css'
+import 'antd/dist/antd.css'
+import { Input, Pagination } from 'antd'
 import MoviesList from '../components/MoviesList/MoviesList'
 import Navigation from '../components/Navigation/Navigation'
-import Search from '../components/Search/Search'
+import MoviedbService from '../services/MoviedbService'
 
 
 export default class App extends Component {
 
-  // state = {
-  //   label: '',
-  // };
-  //
-  // onChange = (ev) => {
-  //   this.setState({
-  //     label: ev.target.value,
-  //   });
-  // };
+  moviedbService = new MoviedbService()
 
-  render() {
+  state = {
+    movies: null,
+    loading: true,
+    query: undefined,
+    page: 1,
+    totalItems: null
+  }
+
+  componentDidMount () {
+    this.getMoviesByName()
+  }
+
+  onError = () => {
+    this.setState({
+      error: true,
+      loading: false,
+    })
+  }
+
+  getMoviesByName () {
+    const { query, page } = this.state
+    this.moviedbService
+      .getMovies(query, page)
+      .then(({ movies, totalResults: totalItems }) => {
+        this.setState({
+          movies,
+          totalItems,
+          loading: false,
+          error: false
+        })
+      })
+      .catch(this.onError)
+  }
+
+
+  onChangeQuery = (ev) => {
+      this.setState({
+        query: ev.target.value ? ev.target.value : undefined
+      }, this.getMoviesByName)
+  }
+
+  onChangePage = (actualPage) => {
+    this.setState({
+      page: actualPage
+    }, this.getMoviesByName)
+  };
+
+  render () {
+    const { page, movies, loading, error, totalItems} = this.state
+
     return (
       <div className="container-box">
-        <Navigation doSearch={this.doSearch}/>
-        <Search
-          //       onChange={this.onChange}
+        <Navigation/>
+        <Input placeholder="Basic usage"
+               onChange={debounce(this.onChangeQuery,1500)}
         />
         <MoviesList
-          getMovies={this.getMovies}
+                    movies= {movies}
+                    loading={loading}
+                    error={error}
         />
-        <Pagination size="small" defaultCurrent={1} total={50} className="pagination"/>
+        <Pagination size="small"
+                    defaultCurrent={1}
+                    total={totalItems} className="pagination"
+                    page={page}
+                    onChange={this.onChangePage}
+        />
       </div>
     )
   }

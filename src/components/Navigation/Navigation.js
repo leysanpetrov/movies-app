@@ -4,12 +4,8 @@ import { Tabs } from 'antd';
 
 const { TabPane } = Tabs;
 
-function callback(key) {
-  console.log(key);
-}
-
 const Navigation = () => (
-  <Tabs defaultActiveKey="1" onChange={callback} className="navigation">
+  <Tabs defaultActiveKey="1"  className="navigation">
     <TabPane tab="Search" key="1" />
     <TabPane tab="Rated" key="2" disabled />
   </Tabs>
