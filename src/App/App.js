@@ -109,7 +109,7 @@ export default class App extends Component {
   }
 
   render () {
-    const { query, page, movies, loading, error, totalItems, isVisibleSearch, genresList } = this.state
+    const { page, movies, loading, error, totalItems, isVisibleSearch, genresList } = this.state
 
     const classNameSearch = isVisibleSearch ? 'search' : 'search_visibility'
 
@@ -119,7 +119,6 @@ export default class App extends Component {
           <Navigation onChangeTab={this.onChangeTab}/>
           <div className={classNameSearch}>
             <Input placeholder="Basic usage"
-                   value={query}
                    onChange={debounce(this.onChangeQuery, 1500)}
             />
           </div>
