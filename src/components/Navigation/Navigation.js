@@ -4,10 +4,13 @@ import { Tabs } from 'antd';
 
 const { TabPane } = Tabs;
 
-const Navigation = () => (
-  <Tabs defaultActiveKey="1"  className="navigation">
+const Navigation = ({ onChangeTab }) => (
+  <Tabs defaultActiveKey="1"
+        className="navigation"
+        onChange={(activeKey) => onChangeTab(activeKey)}
+  >
     <TabPane tab="Search" key="1" />
-    <TabPane tab="Rated" key="2" disabled />
+    <TabPane tab="Rated" key="2" />
   </Tabs>
 );
 

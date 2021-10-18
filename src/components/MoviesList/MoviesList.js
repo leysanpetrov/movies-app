@@ -4,6 +4,7 @@ import { Spin, Alert } from 'antd'
 import './MoviesList.css'
 import { format } from 'date-fns'
 import Movie from '../Movie/Movie'
+import {MoviesServicesContextConsumer} from '../MoviesServicesContext/MoviesServicesContext'
 
 export default class MoviesList extends Component {
 
@@ -21,20 +22,37 @@ export default class MoviesList extends Component {
   }
 
   render () {
-    const { movies, loading, error } = this.props
+    const { movies, loading, error, makeRate, rememberRate } = this.props
 
-    const movieList = movies?.map((movie) => (
-      <li className="movie" key={movie.id}>
-        <Movie
-          title={movie.title}
-          date={this.formatDataMovie(movie.date)}
-          action={movie.action}
-          drama={movie.drama}
-          overview={this.extendText(movie.overview, 150)}
-          image={movie.image}
-        />
-      </li>
-    ))
+    const limit = window.innerWidth > 1000 ? 100 : 170
+
+      const movieList = movies?.map((movie) => (
+        <li className="movie" key={movie.id}>
+          <MoviesServicesContextConsumer>
+            {
+              (genresList) => {
+                const getGenres = (genreIds) => genresList
+                  .filter((genre) => genreIds.includes(genre.id))
+                  .map((genre) => genre)
+                return (
+                  <Movie
+                    title={movie.title}
+                    date={this.formatDataMovie(movie.date)}
+                    genres={getGenres(movie.genreIds)}
+                    overview={this.extendText(movie.overview, limit)}
+                    image={movie.image}
+                    rate={movie.rate}
+                    makeRate={makeRate}
+                    id={movie.id}
+                    rememberRate={rememberRate}
+                  />
+                )
+              }
+            }
+          </MoviesServicesContextConsumer>
+        </li>
+      ))
+
 
     const noMoviesAlert = <Alert message="No results were found for your search" type="info" />
     const errorAlert = <Alert
@@ -43,6 +61,7 @@ export default class MoviesList extends Component {
       description="something has gone terribly wrong (but we try to fix it)"
       type="error"
     />
+
 
     const list = !movieList?.length ? noMoviesAlert : movieList
 
